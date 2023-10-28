@@ -1,5 +1,5 @@
-import pandas as pd
-df = pd.read_csv("Flight_Data.csv")
+import main
+df = main.df2
 
 
 class FLight:  # making a class for flights' detail
