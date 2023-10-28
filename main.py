@@ -7,7 +7,4 @@ data2 = df.drop(columns='Airline')
 df2 = data2.drop_duplicates(keep='first')
 
 extracted_col = df["Airline"]
-df2.insert(0, 'Airline', extracted_col) # removing duplicates
-
-#print(df2)
-
+df2.insert(0, 'Airline', extracted_col)
