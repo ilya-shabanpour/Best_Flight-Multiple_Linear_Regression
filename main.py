@@ -14,4 +14,4 @@ input_split = user_input.split(" - ")
 src_airport = input_split[0]  # putting input airports in variables
 dest_airport = input_split[1]
 
-#dijkstra(graph, src_airport, dest_airport)
+dijkstra.dijkstra(Flight_List.graph, src_airport, dest_airport)
