@@ -1,4 +1,6 @@
 import main
+import pandas as pd
+
 df = main.df2
 
 
@@ -23,16 +25,31 @@ class FLight:  # making a class for flights' detail
 
 
 flights_list = []  # a list of all flights
-for i in df.index:  # allocating all "needed" attributes
+for index, row in df.iterrows():  # allocating all "needed" attributes
     flight = FLight()
-    flight.Airline = df.iloc[i].iloc[0]
-    flight.SourceAirport = df.iloc[i].iloc[1]
-    flight.DestinationAirport = df.iloc[i].iloc[2]
-    flight.SourceAirport_City = df.iloc[i].iloc[3]
-    flight.SourceAirport_Country = df.iloc[i].iloc[4]
-    flight.DestinationAirport_City = df.iloc[i].iloc[8]
-    flight.DestinationAirport_Country = df.iloc[i].iloc[9]
-    flight.Distance = df.iloc[i].iloc[13]
-    flight.FlyTime = df.iloc[i].iloc[14]
-    flight.Price = df.iloc[i].iloc[15]
+    flight.Airline = row["Airline"]
+    flight.SourceAirport = row["SourceAirport"]
+    flight.DestinationAirport = row["DestinationAirport"]
+    flight.SourceAirport_City = row["SourceAirport_City"]
+    flight.SourceAirport_Country = row["SourceAirport_Country"]
+    flight.DestinationAirport_City = row["DestinationAirport_City"]
+    flight.DestinationAirport_Country = row["DestinationAirport_Country"]
+    flight.Distance = row["Distance"]
+    flight.FlyTime = row["FlyTime"]
+    flight.Price = row["Price"]
     flights_list.append(flight)
+
+
+def cost_func(f: FLight):  # cost funtion is a linear combination of price and fly time of the flight.
+    return round(((f.Price / 1000) * 3 + f.FlyTime), 3)
+
+
+# making Adjacency dic
+graph = {}
+for flight in flights_list:
+    if flight.SourceAirport not in graph.keys():
+        graph[flight.SourceAirport] = {flight.DestinationAirport: cost_func(flight)}
+    else:
+        graph[flight.SourceAirport][flight.DestinationAirport] = cost_func(flight)
+
+# print(graph["John F Kennedy International Airport"])
