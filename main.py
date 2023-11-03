@@ -1,4 +1,6 @@
 import pandas as pd
+import Flight_List
+import dijkstra
 
 
 # df = pd.read_csv("Flight_Data.csv")
@@ -31,3 +33,5 @@ def output_files(djk: list, a_star: list):
 
     output_file_djk.close()
     output_file_AStar.close()
+
+dijkstra_shortest_path = dijkstra.dijkstra(Flight_List.graph, src_airport, dest_airport)
