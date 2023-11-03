@@ -2,35 +2,59 @@
 
 def dijkstra(graph : dict, src_airport, dest_airport):
     dist = {}
-    path = {}
+    prev = {}
     explored = []
     unexplored = {}
 
     for vertex in graph.keys():
         dist[vertex] = float('inf')  # setting all source_airport dist to infinity
-        path[vertex] = []  # path list is empty yet
+
 
     for dictionary in graph.values():
         for vertex in dictionary.keys():
             if vertex not in dist.keys():
                 dist[vertex] = float('inf')  # setting all destination_airport dist to infinity
-                path[vertex] = []
 
     dist[src_airport] = 0
     explored.append(src_airport)
     for source in graph.keys():  # setting values for children of src_airport
         if source == src_airport:
-            temp_dictionary = source[src_airport]
-            for destination in temp_dictionary.keys():
-                dist[destination] = temp_dictionary[destination]
-                unexplored[destination] = temp_dictionary[destination]
-    source = src_airport
+            edges = graph[src_airport]
+            for destination in edges.keys():
+                dist[destination] = edges[destination]
+                unexplored[destination] = edges[destination]
+
+    v_distance = min(unexplored.values())
+    v = list(unexplored.keys())[list(unexplored.values()).index(v_distance)]
+    explored.append(v)
+    unexplored.pop(v)
+    prev[v] = src_airport
 
     while dest_airport not in explored:
-        sorted_values = sorted(unexplored)
-        min_unexplored = sorted_values[0]
-        min_unexplored_distance = unexplored[min_unexplored]
 
+        for source in graph.keys():
+            if source == v:
+                edges = graph[v]
+                for w in edges.keys():
+                    if w not in explored:
+                        if dist[v] + edges[w] < dist[w]:
+                            dist[w] = dist[v] + edges[w]
+                            unexplored[w] = dist[w]
+                            prev[w] = v
+                break
+        v_distance = min(unexplored.values())
+        v = list(unexplored.keys())[list(unexplored.values()).index(v_distance)]
+        explored.append(v)
+        unexplored.pop(v)
 
+    path = []
+    destination = dest_airport
+    while src_airport not in path:
+        for vertex in prev.keys():
+            if vertex == destination:
+                path.append(prev[destination])
+                destination = prev[destination]
+                break
 
+    return path
 
