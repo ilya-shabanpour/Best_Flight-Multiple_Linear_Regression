@@ -33,19 +33,37 @@ def cost_func(f: Flight_List.FLight):  # cost funtion is a linear combination of
     return round(((f.Price / 1000) * 3 + f.FlyTime), 3)
 
 
-def output_files(djk: list, a_star: list, djk_time):
+def output_files(djk: list, djk_time):
     output_file_djk = open("[8]-UIAI4021-PR1-Q1_djk.txt", "w+")
     output_file_a_star = open("[8]-UIAI4021-PR1-Q1_AStar.txt", "w+")
 
     output_file_djk.write("Dijkstra Algorithm\n")
-    output_file_djk.write("Execution Time: " + str(djk_time))
+    output_file_djk.write("Execution Time: " + str(round(djk_time*1000, 2)) + "ms")
     output_file_djk.write("\n")
     output_file_djk.write(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\n")
 
     c = 0
+    total_price = 0
+    total_time = 0
+    total_distance = 0
     for i in range(len(djk) - 1):
-        output_file_djk.write("Flight #" + str(i) + "\nFrom:")
-
+        output_file_djk.write("Flight #" + str(i+1) + "\nFrom: ")
+        for f in Flight_List.flights_list:
+            if f.SourceAirport == djk[c] and f.DestinationAirport == djk[c + 1]:
+                output_file_djk.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
+                                      + f.SourceAirport_Country + "\n")
+                output_file_djk.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
+                                      + f.DestinationAirport_Country + "\n")
+                output_file_djk.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
+                                      + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
+                output_file_djk.write("----------------------------\n")
+                total_price += round(f.Price)
+                total_time += round(f.FlyTime)
+                total_distance += round(f.Distance)
+                break
+        c += 1
+    output_file_djk.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
+                          + "km\n" + "Total Time: " + str(total_time) + "h")
     output_file_djk.close()
     output_file_a_star.close()
 
@@ -114,6 +132,5 @@ if __name__ == '__main__':
     dijkstra_shortest_path = dijkstra.dijkstra(graph_djk, src_airport, dest_airport)
     end = time.time()
     djk_exe_time = end - start
-    print(djk_exe_time)
-    # output_files(start,end)
-    print(dijkstra_shortest_path)
+    output_files(dijkstra_shortest_path, djk_exe_time)
+    # print(dijkstra_shortest_path)
