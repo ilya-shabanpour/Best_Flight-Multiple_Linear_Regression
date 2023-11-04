@@ -1,4 +1,4 @@
-def dijkstra(graph: dict, src_airport, dest_airport):
+def a_star(graph: dict, src_airport, dest_airport):
     dist = {}
     prev = {}
     explored = []
@@ -18,13 +18,12 @@ def dijkstra(graph: dict, src_airport, dest_airport):
     # setting values for children of src_airport
     edges = graph[src_airport]
     for destination in edges.keys():
-        dist[destination] = edges[destination]
-        unexplored[destination] = edges[destination]
+        dist[destination] = edges[destination][0]
+        unexplored[destination] = edges[destination][0] + edges[destination][1]
         prev[destination] = src_airport
 
     while 1:
         # v = least-valued unexplored vertex
-
         v_distance = min(unexplored.values())
         v = list(unexplored.keys())[list(unexplored.values()).index(v_distance)]
         if v not in graph.keys():
@@ -39,9 +38,9 @@ def dijkstra(graph: dict, src_airport, dest_airport):
         edges = graph[v]
         for w in edges.keys():
             if w not in explored:
-                if dist[v] + edges[w] < dist[w]:
-                    dist[w] = dist[v] + edges[w]
-                    unexplored[w] = dist[w]
+                if dist[v] + edges[w][0] < dist[w]:
+                    dist[w] = dist[v] + edges[w][0]
+                    unexplored[w] = dist[w] + edges[w][1]
                     prev[w] = v
 
     path = []
