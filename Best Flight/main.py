@@ -44,28 +44,31 @@ def output_files(djk: list, a_star: list, djk_time, a_star_time):
     output_file_djk.write("\n")
     output_file_djk.write(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\n")
 
-    c = 0
-    total_price = 0
-    total_time = 0
-    total_distance = 0
-    for i in range(len(djk) - 1):
-        output_file_djk.write("Flight #" + str(i + 1) + "\nFrom: ")
-        for f in Flight_List.flights_list:
-            if f.SourceAirport == djk[c] and f.DestinationAirport == djk[c + 1]:
-                output_file_djk.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
-                                      + f.SourceAirport_Country + "\n")
-                output_file_djk.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
-                                      + f.DestinationAirport_Country + "\n")
-                output_file_djk.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
-                                      + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
-                output_file_djk.write("----------------------------\n")
-                total_price += round(f.Price)
-                total_time += round(f.FlyTime)
-                total_distance += round(f.Distance)
-                break
-        c += 1
-    output_file_djk.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
-                          + "km\n" + "Total Time: " + str(total_time) + "h")
+    if djk is None:
+        output_file_djk.write("There is no path from source airport to destination airport")
+    else:
+        c = 0
+        total_price = 0
+        total_time = 0
+        total_distance = 0
+        for i in range(len(djk) - 1):
+            output_file_djk.write("Flight #" + str(i + 1) + "\nFrom: ")
+            for f in Flight_List.flights_list:
+                if f.SourceAirport == djk[c] and f.DestinationAirport == djk[c + 1]:
+                    output_file_djk.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
+                                          + f.SourceAirport_Country + "\n")
+                    output_file_djk.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
+                                          + f.DestinationAirport_Country + "\n")
+                    output_file_djk.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
+                                          + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
+                    output_file_djk.write("----------------------------\n")
+                    total_price += round(f.Price)
+                    total_time += round(f.FlyTime)
+                    total_distance += round(f.Distance)
+                    break
+            c += 1
+        output_file_djk.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
+                              + "km\n" + "Total Time: " + str(total_time) + "h")
     output_file_djk.close()
 
 
@@ -74,28 +77,31 @@ def output_files(djk: list, a_star: list, djk_time, a_star_time):
     output_file_a_star.write("\n")
     output_file_a_star.write(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\n")
 
-    c = 0
-    total_price = 0
-    total_time = 0
-    total_distance = 0
-    for i in range(len(a_star) - 1):
-        output_file_a_star.write("Flight #" + str(i + 1) + "\nFrom: ")
-        for f in Flight_List.flights_list:
-            if f.SourceAirport == a_star[c] and f.DestinationAirport == a_star[c + 1]:
-                output_file_a_star.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
-                                      + f.SourceAirport_Country + "\n")
-                output_file_a_star.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
-                                      + f.DestinationAirport_Country + "\n")
-                output_file_a_star.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
-                                      + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
-                output_file_a_star.write("----------------------------\n")
-                total_price += round(f.Price)
-                total_time += round(f.FlyTime)
-                total_distance += round(f.Distance)
-                break
-        c += 1
-    output_file_a_star.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
-                          + "km\n" + "Total Time: " + str(total_time) + "h")
+    if a_star is None:
+        output_file_a_star.write("There is no path from source airport to destination airport")
+    else:
+        c = 0
+        total_price = 0
+        total_time = 0
+        total_distance = 0
+        for i in range(len(a_star) - 1):
+            output_file_a_star.write("Flight #" + str(i + 1) + "\nFrom: ")
+            for f in Flight_List.flights_list:
+                if f.SourceAirport == a_star[c] and f.DestinationAirport == a_star[c + 1]:
+                    output_file_a_star.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
+                                          + f.SourceAirport_Country + "\n")
+                    output_file_a_star.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
+                                          + f.DestinationAirport_Country + "\n")
+                    output_file_a_star.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
+                                          + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
+                    output_file_a_star.write("----------------------------\n")
+                    total_price += round(f.Price)
+                    total_time += round(f.FlyTime)
+                    total_distance += round(f.Distance)
+                    break
+            c += 1
+        output_file_a_star.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
+                              + "km\n" + "Total Time: " + str(total_time) + "h")
     output_file_a_star.close()
 
 

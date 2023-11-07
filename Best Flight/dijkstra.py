@@ -24,8 +24,10 @@ def dijkstra(graph: dict, src_airport, dest_airport):
 
     while 1:
         # v = least-valued unexplored vertex
-
+        if len(unexplored) == 0:
+            return None
         v_distance = min(unexplored.values())
+
         v = list(unexplored.keys())[list(unexplored.values()).index(v_distance)]
         if v not in graph.keys():
             unexplored.pop(v)

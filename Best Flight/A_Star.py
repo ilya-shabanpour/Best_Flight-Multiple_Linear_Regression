@@ -23,6 +23,8 @@ def a_star(graph: dict, src_airport, dest_airport):
         prev[destination] = src_airport
 
     while 1:
+        if len(unexplored) == 0:
+            return None
         # v = least-valued unexplored vertex
         v_distance = min(unexplored.values())
         v = list(unexplored.keys())[list(unexplored.values()).index(v_distance)]
