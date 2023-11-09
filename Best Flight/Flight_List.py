@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("Flight_Data.csv")
+df = pd.read_csv("Flight_Data(1).csv")
 data2 = df.drop(columns='Airline')
 df2 = data2.drop_duplicates(keep='first')
 extracted_col = df["Airline"]

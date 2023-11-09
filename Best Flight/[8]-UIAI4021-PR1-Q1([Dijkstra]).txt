@@ -1,0 +1,41 @@
+Dijkstra Algorithm
+Execution Time: 42.79ms
+.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+Flight #1(Delta Air Lines):
+From: La Crosse Municipal Airport - La Crosse, United States
+To: Minneapolis-St Paul International/Wold-Chamberlain Airport - Minneapolis, United States
+Distance: 191.9km
+Time: 0.5h
+Price: 87.72$
+----------------------------
+Flight #2(Delta Air Lines):
+From: Minneapolis-St Paul International/Wold-Chamberlain Airport - Minneapolis, United States
+To: Ted Stevens Anchorage International Airport - Anchorage, United States
+Distance: 4042.0km
+Time: 5.1h
+Price: 423.96$
+----------------------------
+Flight #3(Era Alaska):
+From: Ted Stevens Anchorage International Airport - Anchorage, United States
+To: Fairbanks International Airport - Fairbanks, United States
+Distance: 418.94km
+Time: 0.7h
+Price: 92.31$
+----------------------------
+Flight #4(Era Alaska):
+From: Fairbanks International Airport - Fairbanks, United States
+To: Edward G. Pitka Sr Airport - Galena, United States
+Distance: 430.04km
+Time: 1.4h
+Price: 76.85$
+----------------------------
+Flight #5(Era Alaska):
+From: Edward G. Pitka Sr Airport - Galena, United States
+To: Nulato Airport - Nulato, United States
+Distance: 53.97km
+Time: 0.8h
+Price: 37.61$
+----------------------------
+Total Price: 719$
+Total Distance: 5137km
+Total Time: 9h

@@ -36,8 +36,8 @@ def cost_func(f: Flight_List.FLight):  # cost funtion is a linear combination of
 
 
 def output_files(djk: list, a_star: list, djk_time, a_star_time):
-    output_file_djk = open("[8]-UIAI4021-PR1-Q1_djk.txt", "w+")
-    output_file_a_star = open("[8]-UIAI4021-PR1-Q1_AStar.txt", "w+")
+    output_file_djk = open("[8]-UIAI4021-PR1-Q1([Dijkstra]).txt", "w+")
+    output_file_a_star = open("[8]-UIAI4021-PR1-Q1([AStar]).txt", "w+")
 
     output_file_djk.write("Dijkstra Algorithm\n")
     output_file_djk.write("Execution Time: " + str(round(djk_time * 1000, 2)) + "ms")
@@ -52,15 +52,17 @@ def output_files(djk: list, a_star: list, djk_time, a_star_time):
         total_time = 0
         total_distance = 0
         for i in range(len(djk) - 1):
-            output_file_djk.write("Flight #" + str(i + 1) + "\nFrom: ")
+            output_file_djk.write("Flight #" + str(i + 1))
             for f in Flight_List.flights_list:
                 if f.SourceAirport == djk[c] and f.DestinationAirport == djk[c + 1]:
-                    output_file_djk.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
+                    output_file_djk.write('(' + f.Airline + '):' + "\nFrom: ")
+                    output_file_djk.write(f.SourceAirport + " - " + f.SourceAirport_City + ", "
                                           + f.SourceAirport_Country + "\n")
-                    output_file_djk.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
+                    output_file_djk.write("To: " + f.DestinationAirport + " - " + f.DestinationAirport_City + ", "
                                           + f.DestinationAirport_Country + "\n")
-                    output_file_djk.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
-                                          + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
+                    output_file_djk.write(
+                        "Distance: " + str(round(f.Distance, 2)) + "km\n" + "Time: " + str(round(f.FlyTime, 1))
+                        + "h\n" + "Price: " + str(round(f.Price, 2)) + "$\n")
                     output_file_djk.write("----------------------------\n")
                     total_price += round(f.Price)
                     total_time += round(f.FlyTime)
@@ -70,7 +72,6 @@ def output_files(djk: list, a_star: list, djk_time, a_star_time):
         output_file_djk.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
                               + "km\n" + "Total Time: " + str(total_time) + "h")
     output_file_djk.close()
-
 
     output_file_a_star.write("A* Algorithm\n")
     output_file_a_star.write("Execution Time: " + str(round(a_star_time * 1000, 2)) + "ms")
@@ -85,15 +86,17 @@ def output_files(djk: list, a_star: list, djk_time, a_star_time):
         total_time = 0
         total_distance = 0
         for i in range(len(a_star) - 1):
-            output_file_a_star.write("Flight #" + str(i + 1) + "\nFrom: ")
+            output_file_a_star.write("Flight #" + str(i + 1))
             for f in Flight_List.flights_list:
                 if f.SourceAirport == a_star[c] and f.DestinationAirport == a_star[c + 1]:
-                    output_file_a_star.write(f.SourceAirport_City + "-" + f.SourceAirport + ". "
-                                          + f.SourceAirport_Country + "\n")
-                    output_file_a_star.write("To: " + f.DestinationAirport_City + "-" + f.DestinationAirport + ". "
-                                          + f.DestinationAirport_Country + "\n")
-                    output_file_a_star.write("Distance: " + str(round(f.Distance)) + "km\n" + "Time: " + str(round(f.FlyTime))
-                                          + "h\n" + "Price: " + str(round(f.Price)) + "$\n")
+                    output_file_a_star.write('(' + f.Airline + '):' + "\nFrom: ")
+                    output_file_a_star.write(f.SourceAirport + " - " + f.SourceAirport_City + ", "
+                                             + f.SourceAirport_Country + "\n")
+                    output_file_a_star.write("To: " + f.DestinationAirport + " - " + f.DestinationAirport_City + ", "
+                                             + f.DestinationAirport_Country + "\n")
+                    output_file_a_star.write(
+                        "Distance: " + str(round(f.Distance, 2)) + "km\n" + "Time: " + str(round(f.FlyTime, 1))
+                        + "h\n" + "Price: " + str(round(f.Price, 2)) + "$\n")
                     output_file_a_star.write("----------------------------\n")
                     total_price += round(f.Price)
                     total_time += round(f.FlyTime)
@@ -101,7 +104,7 @@ def output_files(djk: list, a_star: list, djk_time, a_star_time):
                     break
             c += 1
         output_file_a_star.write("Total Price: " + str(total_price) + "$\n" + "Total Distance: " + str(total_distance)
-                              + "km\n" + "Total Time: " + str(total_time) + "h")
+                                 + "km\n" + "Total Time: " + str(total_time) + "h")
     output_file_a_star.close()
 
 
@@ -125,15 +128,15 @@ def a_star_graph():
     for fli in Flight_List.flights_list:
         if fli.SourceAirport not in graph_astar.keys():
             graph_astar[fli.SourceAirport] = {fli.DestinationAirport: [cost_func(fli),
-                                                                       distance(fli.SourceAirport_Latitude,
+                                                                       distance(fli.DestinationAirport_Latitude,
                                                                                 h_latitude,
-                                                                                fli.SourceAirport_Longitude,
+                                                                                fli.DestinationAirport_Longitude,
                                                                                 h_longitude)]}
         else:
             graph_astar[fli.SourceAirport][fli.DestinationAirport] = [cost_func(fli),
-                                                                      distance(fli.SourceAirport_Latitude,
+                                                                      distance(fli.DestinationAirport_Latitude,
                                                                                h_latitude,
-                                                                               fli.SourceAirport_Longitude,
+                                                                               fli.DestinationAirport_Longitude,
                                                                                h_longitude)]
     return graph_astar
 
