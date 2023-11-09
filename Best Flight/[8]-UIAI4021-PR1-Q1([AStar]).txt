@@ -1,41 +1,27 @@
 A* Algorithm
-Execution Time: 3.69ms
+Execution Time: 3.29ms
 .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
-Flight #1(Delta Air Lines):
-From: La Crosse Municipal Airport - La Crosse, United States
-To: Minneapolis-St Paul International/Wold-Chamberlain Airport - Minneapolis, United States
-Distance: 191.9km
-Time: 0.5h
-Price: 87.72$
+Flight #1(Etihad Airways):
+From: Abu Dhabi International Airport - Abu Dhabi, United Arab Emirates
+To: John F Kennedy International Airport - New York, United States
+Distance: 11031.4km
+Time: 14.6h
+Price: 1118.55$
 ----------------------------
-Flight #2(Delta Air Lines):
-From: Minneapolis-St Paul International/Wold-Chamberlain Airport - Minneapolis, United States
-To: Ted Stevens Anchorage International Airport - Anchorage, United States
-Distance: 4042.0km
-Time: 5.1h
-Price: 423.96$
+Flight #2(American Airlines):
+From: John F Kennedy International Airport - New York, United States
+To: Charlotte Douglas International Airport - Charlotte, United States
+Distance: 870.53km
+Time: 2.0h
+Price: 141.97$
 ----------------------------
-Flight #3(Era Alaska):
-From: Ted Stevens Anchorage International Airport - Anchorage, United States
-To: Fairbanks International Airport - Fairbanks, United States
-Distance: 418.94km
-Time: 0.7h
-Price: 92.31$
+Flight #3(American Airlines):
+From: Charlotte Douglas International Airport - Charlotte, United States
+To: Gainesville Regional Airport - Gainesville, United States
+Distance: 626.73km
+Time: 1.2h
+Price: 161.28$
 ----------------------------
-Flight #4(Era Alaska):
-From: Fairbanks International Airport - Fairbanks, United States
-To: Edward G. Pitka Sr Airport - Galena, United States
-Distance: 430.04km
-Time: 1.4h
-Price: 76.85$
-----------------------------
-Flight #5(Era Alaska):
-From: Edward G. Pitka Sr Airport - Galena, United States
-To: Nulato Airport - Nulato, United States
-Distance: 53.97km
-Time: 0.8h
-Price: 37.61$
-----------------------------
-Total Price: 719$
-Total Distance: 5137km
-Total Time: 9h
+Total Price: 1422$
+Total Distance: 12529km
+Total Time: 18h
