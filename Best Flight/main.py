@@ -1,5 +1,3 @@
-import pandas as pd
-
 import A_Star
 import Flight_List
 import dijkstra
@@ -7,7 +5,7 @@ from math import radians, cos, sin, asin, sqrt
 import time
 
 
-def distance(lat1, lat2, lon1, lon2):
+def heuristic(lat1, lat2, lon1, lon2):
     # The math module contains a function named
     # radians which converts from degrees to radians.
     lon1 = radians(lon1)
@@ -31,7 +29,7 @@ def distance(lat1, lat2, lon1, lon2):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
-def cost_func(f: Flight_List.FLight):  # cost funtion is a linear combination of price and fly time of the flight.
+def cost_func(f: Flight_List.FLight):
     return round(f.Distance, 3)
 
 
@@ -128,16 +126,16 @@ def a_star_graph():
     for fli in Flight_List.flights_list:
         if fli.SourceAirport not in graph_astar.keys():
             graph_astar[fli.SourceAirport] = {fli.DestinationAirport: [cost_func(fli),
-                                                                       distance(fli.DestinationAirport_Latitude,
-                                                                                h_latitude,
-                                                                                fli.DestinationAirport_Longitude,
-                                                                                h_longitude)]}
+                                                                       heuristic(fli.DestinationAirport_Latitude,
+                                                                                 h_latitude,
+                                                                                 fli.DestinationAirport_Longitude,
+                                                                                 h_longitude)]}
         else:
             graph_astar[fli.SourceAirport][fli.DestinationAirport] = [cost_func(fli),
-                                                                      distance(fli.DestinationAirport_Latitude,
-                                                                               h_latitude,
-                                                                               fli.DestinationAirport_Longitude,
-                                                                               h_longitude)]
+                                                                      heuristic(fli.DestinationAirport_Latitude,
+                                                                                h_latitude,
+                                                                                fli.DestinationAirport_Longitude,
+                                                                                h_longitude)]
     return graph_astar
 
 
@@ -177,4 +175,3 @@ if __name__ == '__main__':
     print(a_star_shortest_path)
     print(a_star_exe_time)
     output_files(dijkstra_shortest_path, a_star_shortest_path, djk_exe_time, a_star_exe_time)
-    # print(dijkstra_shortest_path)
