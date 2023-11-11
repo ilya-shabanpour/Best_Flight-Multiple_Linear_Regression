@@ -1,0 +1,8 @@
+Price: -5366.04 * [departure_time] + -8310.8 * [stops] + 2893.72 * [arrival_time] + 54245.16 * [class] + 2936.18 * [duration] + -1339.67 * [days_left] + 38728.69
+Training Time: 2.5s
+
+Logs:
+MSE: 56733645
+RMSE: 7532
+MAE: 4604
+R2: 0.89

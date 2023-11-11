@@ -1,27 +1,27 @@
 Dijkstra Algorithm
-Execution Time: 13.47ms
+Execution Time: 2.52ms
 .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
-Flight #1(Etihad Airways):
-From: Abu Dhabi International Airport - Abu Dhabi, United Arab Emirates
-To: John F Kennedy International Airport - New York, United States
-Distance: 11031.4km
-Time: 14.6h
-Price: 1118.55$
+Flight #1(Turkish Airlines):
+From: Imam Khomeini International Airport - Tehran, Iran
+To: Atatürk International Airport - Istanbul, Turkey
+Distance: 2040.98km
+Time: 3.1h
+Price: 238.35$
 ----------------------------
-Flight #2(American Airlines):
-From: John F Kennedy International Airport - New York, United States
-To: Charlotte Douglas International Airport - Charlotte, United States
-Distance: 870.53km
-Time: 2.0h
-Price: 141.97$
+Flight #2(Turkish Airlines):
+From: Atatürk International Airport - Istanbul, Turkey
+To: John F Kennedy International Airport - New York, United States
+Distance: 8051.74km
+Time: 10.0h
+Price: 836.77$
 ----------------------------
 Flight #3(American Airlines):
-From: Charlotte Douglas International Airport - Charlotte, United States
-To: Gainesville Regional Airport - Gainesville, United States
-Distance: 626.73km
-Time: 1.2h
-Price: 161.28$
+From: John F Kennedy International Airport - New York, United States
+To: Raleigh Durham International Airport - Raleigh-durham, United States
+Distance: 686.5km
+Time: 1.6h
+Price: 131.7$
 ----------------------------
-Total Price: 1422$
-Total Distance: 12529km
-Total Time: 18h
+Total Price: 1207$
+Total Distance: 10780km
+Total Time: 15h
