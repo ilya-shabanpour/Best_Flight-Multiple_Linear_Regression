@@ -5,7 +5,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 
 
-def R2(y_pred, y_true):
+def R2(y_true, x_train, coefficient):
+    y_pred = []
+    n = len(x_train)
+    for i in range(n):
+        y_pred.append((x_train[i] * coefficient).sum())
+    y_pred = np.array(y_pred)
     return r2_score(y_true, y_pred)
 
 
@@ -13,19 +18,22 @@ def cost(x_tr, y_tr, coefficient):
     total_cost = 0
     n = len(x_tr)
     for i in range(n):
-        total_cost += (1 / n) * ((x_tr[i] * coefficient).sum() - y_tr[i]) ** 2
+        total_cost += (1 / n) * (np.dot(x_tr, coefficient) - y_tr) ** 2
+
     return total_cost
 
 
-def gradient_decent(x_tr, y_tr, y_test, coefficient, learning_rate, epoch):
+def gradient_decent(x_tr, y_tr,coefficient, learning_rate, epoch):
     n = len(x_tr)
     for i in range(epoch):
         slopes = np.zeros(19)
-        for j in range(n):
-            for k in range(19):
-                slopes[k] += (2 / n) * ((x_tr[j] * coefficient).sum() - y_tr[j]) * x_tr[j][k]
-            coefficient = coefficient - learning_rate * slopes
-            print(cost(x_tr, y_tr, coefficient))
+        slopes = (2/n) * (np.dot(x_tr, coefficient) - y_tr) * x_tr
+        # for j in range(n):
+        #     for k in range(19):
+        #         slopes[k] += (2 / n) * ((x_tr[j] * coefficient).sum() - y_tr[j]) * x_tr[j][k]
+        coefficient = coefficient - learning_rate * slopes
+        print(cost(x_tr, y_tr, coefficient))
+        # print(R2(y_tr, x_tr, coefficient))
     return coefficient
 
 
@@ -59,5 +67,5 @@ if __name__ == '__main__':
     epochs = 100
     L = 0.1
 
-    coefficients = gradient_decent(x_train, y_train, y_test, coefficients, L, epochs)
-    #R2(y_test, y_train)
+    coefficients = gradient_decent(x_train, y_train, coefficients, L, epochs)
+    #print(R2(y_train, x_train, coefficients))
